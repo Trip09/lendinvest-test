@@ -1,0 +1,25 @@
+parameters:
+  app.object_initializer.user_initializer.class: App\AppBundle\Validator\ObjectInitializer\UserInitializer
+  app.doctrine_event.user.post_persist.class: App\AppBundle\Listener\Doctrine\User\UserPostPersist
+  app.risk_calculator.class: App\AppBundle\Service\RiskCalculator
+  app.twig.risk_calculator.class: App\AppBundle\Twig\Extension\UserRiskExtension
+
+services:
+  app.object_initializer.user_initializer:
+    class: %app.object_initializer.user_initializer.class%
+    tags:
+      - { name: validator.initializer }
+
+  app.doctrine_event.user.post_persist:
+    class: %app.doctrine_event.user.post_persist.class%
+    tags:
+      - { name: doctrine.event_listener, event: postPersist }
+
+  app.risk_calculator:
+    class: %app.risk_calculator.class%
+
+  app.twig.risk_calculator:
+    class: %app.twig.risk_calculator.class%
+    arguments: [ @app.risk_calculator ]
+    tags:
+      - { name: twig.extension }

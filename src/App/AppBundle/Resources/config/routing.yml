@@ -1,0 +1,14 @@
+app_app_new:
+    path:     /user
+    defaults: { _controller: AppAppBundle:EditUser:createUser }
+    methods: [ GET, POST ]
+
+app_app_edit:
+    path:     /user/{user}/edit
+    defaults: { _controller: AppAppBundle:EditUser:editUser }
+    methods: [ GET, POST ]
+
+app_app_display:
+    path:     /user/{user}
+    defaults: { _controller: AppAppBundle:Display:displayInfo }
+    methods: [ GET ]

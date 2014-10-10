@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    Hi {{ user.email }} <br />
+    Your reference is {{ user.reference }} <br />
+    Based on your age {{ user.age }} your risk to die is {{ user_death_risk(user)|round(0) }}% <br />
+    Mortgage risk: {{ user_mortgage_risk(user)|round(0) }}% <br />
+
+    <a href="{{ url('app_app_edit', { user: user.id }) }}">Click here to change your registration</a>
+
+{% endblock %}
